@@ -21,3 +21,17 @@ body {
   padding: 20px;
   border-radius: 8px;
 }
+
+.day-theme {
+  background: linear-gradient(to bottom, #c8eb87, #FFFFFF);
+  color: #000000;
+}
+
+.night-theme {
+  background: linear-gradient(to bottom, #1B3D91, #000000);
+  color: #FFFFFF;
+}
+
+.v-application {
+  transition: background 0.5s ease, color 0.5s ease;
+}
