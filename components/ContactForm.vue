@@ -18,7 +18,6 @@
 import { useTheme } from 'vuetify';
 import { ref } from 'vue';
 
-// Defina as props primeiro
 const props = defineProps({
     initialSubject: {
         type: String,
@@ -32,29 +31,32 @@ const email = ref('');
 const subject = ref(props.initialSubject);
 const message = ref('');
 
-// Regras de validação
+watch(() => props.initialSubject, (newValue) => {
+    subject.value = newValue;
+});
+
 const nameRules = [
-    (v) => !!v || 'O nome é obrigatório', // Campo obrigatório
-    (v) => (v && v.length >= 3) || 'O nome deve ter pelo menos 3 caracteres', // Mínimo de caracteres
+    (v) => !!v || 'O nome é obrigatório',
+    (v) => (v && v.length >= 3) || 'O nome deve ter pelo menos 3 caracteres',
 ];
 
 const emailRules = [
-    (v) => !!v || 'O e-mail é obrigatório', // Campo obrigatório
-    (v) => /.+@.+\..+/.test(v) || 'O e-mail deve ser válido', // Formato de e-mail válido
+    (v) => !!v || 'O e-mail é obrigatório',
+    (v) => /.+@.+\..+/.test(v) || 'O e-mail deve ser válido',
 ];
 
 const subjectRules = [
-    (v) => !!v || 'O assunto é obrigatório', // Campo obrigatório
-    (v) => (v && v.length >= 5) || 'O assunto deve ter pelo menos 5 caracteres', // Mínimo de caracteres
+    (v) => !!v || 'O assunto é obrigatório',
+    (v) => (v && v.length >= 5) || 'O assunto deve ter pelo menos 5 caracteres',
 ];
 
 const messageRules = [
-    (v) => !!v || 'A mensagem é obrigatória', // Campo obrigatório
-    (v) => (v && v.length >= 10) || 'A mensagem deve ter pelo menos 10 caracteres', // Mínimo de caracteres
+    (v) => !!v || 'A mensagem é obrigatória',
+    (v) => (v && v.length >= 10) || 'A mensagem deve ter pelo menos 10 caracteres',
 ];
 
 const submitForm = async () => {
-    isSubmitting.value = true; // Inicia o estado de envio
+    isSubmitting.value = true;
 
     try {
         const formData = new FormData();
@@ -63,8 +65,8 @@ const submitForm = async () => {
         formData.append('subject', subject.value);
         formData.append('message', message.value);
 
-        const config = useRuntimeConfig(); // Acessa as variáveis de ambiente
-        const endpoint = config.public.formspreeEndpoint; // Acessa NUXT_PUBLIC_FORMSPREE_ENDPOINT
+        const config = useRuntimeConfig();
+        const endpoint = config.public.formspreeEndpoint;
 
         const response = await fetch(endpoint, {
             method: 'POST',
@@ -87,7 +89,7 @@ const submitForm = async () => {
     } catch (error) {
         alert('Erro ao enviar a mensagem. Tente novamente.');
     } finally {
-        isSubmitting.value = false; // Finaliza o estado de envio
+        isSubmitting.value = false;
     }
 };
 </script>
