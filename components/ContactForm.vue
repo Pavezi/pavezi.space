@@ -1,22 +1,40 @@
 <template>
     <v-form @submit.prevent="submitForm" class="contact-form">
-        <v-text-field v-model="name" label="Nome" :rules="nameRules" required
-            :color="theme.global.current.value.dark ? 'primary' : 'secondary'" />
-        <v-text-field v-model="email" label="E-mail" type="email" :rules="emailRules" required
-            :color="theme.global.current.value.dark ? 'primary' : 'secondary'" />
-        <v-text-field v-model="subject" label="Assunto" :rules="subjectRules" required
-            :color="theme.global.current.value.dark ? 'primary' : 'secondary'" />
-        <v-textarea v-model="message" label="Mensagem" :rules="messageRules" required
-            :color="theme.global.current.value.dark ? 'primary' : 'secondary'" />
-        <v-btn type="submit" :color="theme.global.current.value.dark ? 'primary' : 'secondary'">
-            Enviar
-        </v-btn>
-        <div class="contact-links mt-6">
-            <h3 class="text-h6 mb-3">Ou entre em contato diretamente:</h3>
+        <v-card class="form-card" elevation="8">
+            <v-card-title class="text-h5 font-weight-bold mb-4">Entre em Contato</v-card-title>
+
+            <v-card-text>
+                <v-text-field v-model="name" label="Nome" :rules="nameRules" required variant="outlined"
+                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4" />
+
+                <v-text-field v-model="email" label="E-mail" type="email" :rules="emailRules" required
+                    variant="outlined" :color="theme.global.current.value.dark ? 'primary' : 'secondary'"
+                    class="mb-4" />
+
+                <v-text-field v-model="subject" label="Assunto" :rules="subjectRules" required variant="outlined"
+                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4" />
+
+                <v-textarea v-model="message" label="Mensagem" :rules="messageRules" required variant="outlined"
+                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" rows="4" class="mb-6" />
+
+                <v-btn type="submit" :color="theme.global.current.value.dark ? 'primary' : 'secondary'" size="large"
+                    block :loading="isSubmitting">
+                    Enviar Mensagem
+                    <template v-slot:loader>
+                        <v-progress-circular indeterminate size="24"></v-progress-circular>
+                    </template>
+                </v-btn>
+            </v-card-text>
+        </v-card>
+
+        <div class="contact-links mt-8">
+            <h3 class="text-h6 mb-4 text-center">Ou entre em contato diretamente:</h3>
             <div class="d-flex justify-center">
-                <ContactLink href="https://wa.me/55991025882" icon="mdi-whatsapp" />
-                <ContactLink href="https://www.linkedin.com/in/vinicius-pavezi-53976b162/" icon="mdi-linkedin" />
-                <ContactLink href="mailto:viniciuspavezi@hotmail.com" icon="mdi-email" />
+                <ContactLink href="https://wa.me/55991025882" icon="mdi-whatsapp" tooltip="WhatsApp" color="#25D366" />
+                <ContactLink href="https://www.linkedin.com/in/vinicius-pavezi-53976b162/" icon="mdi-linkedin"
+                    tooltip="LinkedIn" color="#0077B5" />
+                <ContactLink href="mailto:viniciuspavezi@hotmail.com" icon="mdi-email" tooltip="E-mail"
+                    color="#D44638" />
             </div>
         </div>
     </v-form>
@@ -24,7 +42,7 @@
 
 <script setup>
 import { useTheme } from 'vuetify';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
     initialSubject: {
@@ -38,6 +56,7 @@ const name = ref('');
 const email = ref('');
 const subject = ref(props.initialSubject);
 const message = ref('');
+const isSubmitting = ref(false);
 
 watch(() => props.initialSubject, (newValue) => {
     subject.value = newValue;
@@ -104,18 +123,32 @@ const submitForm = async () => {
 
 <style scoped>
 .contact-form {
-    background-color: rgba(var(--v-theme-background), 0.1);
-    padding: 20px;
-    border-radius: 8px;
+    max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .form-card {
+        padding: 24px;
+        border-radius: 16px;
+        background-color: rgba(var(--v-theme-surface), 0.95);
+    }
+    
+    .contact-links {
+        background-color: rgba(var(--v-theme-surface), 0.8);
+        padding: 20px;
+        border-radius: 12px;
+        backdrop-filter: blur(4px);
+    }
+    
+    .v-text-field,
+    .v-textarea {
+        background-color: rgba(var(--v-theme-surface), 0.1);
+        border-radius: 8px;
 }
 
-.v-text-field,
-.v-textarea {
-    background-color: transparent;
-    color: inherit;
-}
-
-.contact-links {
-    text-align: center;
+.v-btn {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    height: 48px;
 }
 </style>

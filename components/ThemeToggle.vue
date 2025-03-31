@@ -2,7 +2,8 @@
     <v-tooltip location="bottom">
         <template v-slot:activator="{ props }">
             <v-btn @click="toggleTheme" icon v-bind="props" variant="outlined"
-                :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="theme-toggle-button">
+                :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="theme-toggle-button"
+                size="large">
                 <v-icon :class="{ 'rotate-icon': theme.global.current.value.dark }">
                     {{ themeIcon }}
                 </v-icon>
@@ -28,11 +29,18 @@ const toggleTheme = () => {
 <style scoped>
 .theme-toggle-button {
     transition: all 0.3s ease;
-}
-
-.theme-toggle-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+        width: 48px;
+        height: 48px;
+    
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 16px rgba(var(--v-theme-primary), 0.3);
+        }
+    
+        .v-icon {
+            font-size: 24px;
+        }
 }
 
 .rotate-icon {

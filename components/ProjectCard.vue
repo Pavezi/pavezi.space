@@ -1,12 +1,23 @@
 <template>
-    <v-card class="project-card">
-        <v-img :src="image" height="200px" cover />
-        <v-card-title>{{ title }}</v-card-title>
-        <v-card-text>{{ description }}</v-card-text>
-        <v-card-actions>
+    <v-card class="project-card" elevation="6">
+        <v-img :src="image" height="200px" cover class="project-image"
+            gradient="to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7)">
+            <v-card-title class="text-white text-h5 font-weight-bold">
+                {{ title }}
+            </v-card-title>
+        </v-img>
+
+        <v-card-text class="project-description">
+            {{ description }}
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions class="px-4 pb-4">
             <v-btn :href="link" target="_blank" :color="theme.global.current.value.dark ? 'secondary' : 'primary'"
-                variant="outlined">
+                variant="flat" size="large" block>
                 Ver Projeto
+                <v-icon end>mdi-open-in-new</v-icon>
             </v-btn>
         </v-card-actions>
     </v-card>
@@ -21,23 +32,51 @@ defineProps({
     description: String,
     image: String,
     link: String,
+    tags: {
+        type: Array,
+        default: () => []
+    }
 });
 </script>
 
 <style scoped>
 .project-card {
-    width: 300px;
-    margin: 16px;
-    background-color: rgba(var(--v-theme-surface), 0.9);
+    width: 100%;
+        max-width: 360px;
+        margin: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 16px;
+        overflow: hidden;
+    
+        &:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3) !important;
+        }
+    }
+    
+    .project-image {
+        position: relative;
+    
+        .v-card-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 16px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+    }
+    
+    .project-description {
+        padding: 16px;
         color: rgba(var(--v-theme-on-surface), 0.9);
+        line-height: 1.6;
+        min-height: 120px;
     }
-    
-    .v-card-title {
-        font-size: 1.25rem;
-        font-weight: bold;
+.v-card-actions {
+    justify-content: center;
+
+    .v-btn {
+        font-weight: 600;
     }
-    
-    .v-card-text {
-        color: rgba(var(--v-theme-on-surface), 0.7);
 }
 </style>
