@@ -45,6 +45,10 @@ const services = [
         description: 'Integra o WhastApp no seu sistema envio automatico de mensagens e automações',
     },
     {
+        title: 'Pagamentos',
+        description: 'Pagamentos via boletos, qr code, pix e cartão de crédito',
+    },
+    {
         title: 'Automações',
         description: 'Automatizar processos, criar gatilhos e definir scripts',
     },
