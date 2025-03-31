@@ -19,18 +19,6 @@
 
         <v-row class="my-10">
             <v-col cols="12" md="8" offset-md="2">
-                <h2 class="text-h4 font-weight-bold mb-6">Meus Projetos</h2>
-                <v-row>
-                    <v-col cols="12" md="6" v-for="(project, index) in projects" :key="index">
-                        <ProjectCard :title="project.title" :description="project.description" :image="project.image" />
-                    </v-col>
-                </v-row>
-            </v-col>
-        </v-row>
-
-        <v-row class="my-10">
-            <v-col cols="12" md="8" offset-md="2">
-                <h2 class="text-h4 font-weight-bold mb-6">Entre em Contato</h2>
                 <ContactForm />
             </v-col>
         </v-row>
