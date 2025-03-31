@@ -43,7 +43,7 @@
     </v-main>
 
     <v-footer app color="primary" dark>
-      <span>&copy; 2023 My Portfolio</span>
+      <span>&copy; 2025 Vinícius Pavezi</span>
     </v-footer>
   </v-app>
 </template>
