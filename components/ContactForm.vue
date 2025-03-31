@@ -11,6 +11,14 @@
         <v-btn type="submit" :color="theme.global.current.value.dark ? 'primary' : 'secondary'">
             Enviar
         </v-btn>
+        <div class="contact-links mt-6">
+            <h3 class="text-h6 mb-3">Ou entre em contato diretamente:</h3>
+            <div class="d-flex justify-center">
+                <ContactLink href="https://wa.me/55991025882" icon="mdi-whatsapp" />
+                <ContactLink href="https://www.linkedin.com/in/vinicius-pavezi-53976b162/" icon="mdi-linkedin" />
+                <ContactLink href="mailto:viniciuspavezi@hotmail.com" icon="mdi-email" />
+            </div>
+        </div>
     </v-form>
 </template>
 
@@ -97,7 +105,6 @@ const submitForm = async () => {
 <style scoped>
 .contact-form {
     background-color: rgba(var(--v-theme-background), 0.1);
-        /* Fundo semi-transparente */
     padding: 20px;
     border-radius: 8px;
 }
@@ -105,8 +112,10 @@ const submitForm = async () => {
 .v-text-field,
 .v-textarea {
     background-color: transparent;
-    /* Fundo transparente */
     color: inherit;
-    /* Herda a cor do tema */
+}
+
+.contact-links {
+    text-align: center;
 }
 </style>

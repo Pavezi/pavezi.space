@@ -1,12 +1,12 @@
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #0B3D91;
-  color: #FFFFFF;
+  color: #e0e0e0;
 }
 
 .v-card {
   background-color: #1E1E2D;
-  color: #FFFFFF;
+  color: #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -23,13 +23,13 @@ body {
 }
 
 .day-theme {
-  background: linear-gradient(to bottom, #c8eb87, #FFFFFF);
-  color: #000000;
+  background: linear-gradient(to bottom, #c8eb87, #fffcdc);
+  color: #1A1F2B;
 }
 
 .night-theme {
-  background: linear-gradient(to bottom, #1B3D91, #000000);
-  color: #FFFFFF;
+  background: linear-gradient(to bottom, #050e35, #1A1F2B);
+  color: #e0e0e0;
 }
 
 .v-application {

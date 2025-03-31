@@ -1,5 +1,86 @@
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <v-app :style="backgroundStyle">
+    <v-app-bar app color="primary" dark v-if="!isMobile">
+      <v-toolbar-title>My Space Portfolio</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn text to="/">Home</v-btn>
+      <v-btn text to="/projetos">Projects</v-btn>
+      <v-btn text to="/contato">Contact</v-btn>
+      <v-btn icon @click="toggleTheme">
+        <v-icon>{{ themeIcon }}</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-app-bar app color="primary" dark v-else>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>My Space Portfolio</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon @click="toggleTheme">
+        <v-icon>{{ themeIcon }}</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" app temporary>
+      <v-list>
+        <v-list-item to="/">
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
+        <v-list-item to="/contato">
+          <v-list-item-title>Contato</v-list-item-title>
+        </v-list-item>
+        <v-list-item to="/sobre">
+          <v-list-item-title>Sobre</v-list-item-title>
+        </v-list-item>
+        <v-list-item to="/servicos">
+          <v-list-item-title>Serviços</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-main>
+      <router-view />
+    </v-main>
+
+    <v-footer app color="primary" dark>
+      <span>&copy; 2023 My Space Portfolio</span>
+    </v-footer>
+  </v-app>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      isDark: true,
+      drawer: false,
+      isMobile: false,
+    };
+  },
+  computed: {
+    themeIcon() {
+      return this.isDark ? 'mdi-weather-sunny' : 'mdi-weather-night';
+    },
+    backgroundStyle() {
+      return {
+        background: this.isDark ? '#0B3D91' : '#E0E0E0',
+        color: this.isDark ? '#FFFFFF' : '#000000',
+      };
+    },
+  },
+  methods: {
+    toggleTheme() {
+      this.isDark = !this.isDark;
+      this.$vuetify.theme.dark = this.isDark;
+    },
+    checkScreenSize() {
+      this.isMobile = window.innerWidth < 960;
+    },
+  },
+  mounted() {
+    this.checkScreenSize();
+    window.addEventListener('resize', this.checkScreenSize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkScreenSize);
+  },
+};
+</script>
