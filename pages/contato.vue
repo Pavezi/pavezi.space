@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1 class="text-h4 font-weight-bold mb-6">Entre em Contato </h1>
         <ContactForm :initialSubject="subject" />
     </div>
 </template>

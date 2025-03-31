@@ -1,21 +1,24 @@
 <template>
-    <v-form @submit.prevent="submitForm" class="contact-form">
+    <v-form @submit.prevent="submitForm" class="contact-form" ref="form">
         <v-card class="form-card" elevation="8">
             <v-card-title class="text-h5 font-weight-bold mb-4">Entre em Contato</v-card-title>
 
             <v-card-text>
-                <v-text-field v-model="name" label="Nome" :rules="nameRules" required variant="outlined"
-                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4" />
+                <v-text-field v-model="name" label="Nome Completo" :rules="nameRules" required variant="outlined"
+                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4"
+                    :error-messages="fieldErrors.name" @input="clearError('name')" />
 
                 <v-text-field v-model="email" label="E-mail" type="email" :rules="emailRules" required
-                    variant="outlined" :color="theme.global.current.value.dark ? 'primary' : 'secondary'"
-                    class="mb-4" />
+                    variant="outlined" :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4"
+                    :error-messages="fieldErrors.email" @input="clearError('email')" />
 
                 <v-text-field v-model="subject" label="Assunto" :rules="subjectRules" required variant="outlined"
-                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4" />
+                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" class="mb-4"
+                    :error-messages="fieldErrors.subject" @input="clearError('subject')" />
 
                 <v-textarea v-model="message" label="Mensagem" :rules="messageRules" required variant="outlined"
-                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" rows="4" class="mb-6" />
+                    :color="theme.global.current.value.dark ? 'primary' : 'secondary'" rows="4" class="mb-6"
+                    :error-messages="fieldErrors.message" @input="clearError('message')" />
 
                 <v-btn type="submit" :color="theme.global.current.value.dark ? 'primary' : 'secondary'" size="large"
                     block :loading="isSubmitting">
@@ -37,6 +40,24 @@
                     color="#D44638" />
             </div>
         </div>
+
+        <v-snackbar v-model="showErrorSnackbar" :timeout="5000" color="error" location="bottom right">
+            {{ errorMessage }}
+            <template v-slot:actions>
+                <v-btn variant="text" @click="showErrorSnackbar = false">
+                    Fechar
+                </v-btn>
+            </template>
+        </v-snackbar>
+
+        <v-snackbar v-model="showSuccessSnackbar" :timeout="5000" color="success" location="bottom right">
+            Mensagem enviada com sucesso!
+            <template v-slot:actions>
+                <v-btn variant="text" @click="showSuccessSnackbar = false">
+                    Fechar
+                </v-btn>
+            </template>
+        </v-snackbar>
     </v-form>
 </template>
 
@@ -57,6 +78,16 @@ const email = ref('');
 const subject = ref(props.initialSubject);
 const message = ref('');
 const isSubmitting = ref(false);
+const form = ref(null);
+const showErrorSnackbar = ref(false);
+const showSuccessSnackbar = ref(false);
+const errorMessage = ref('');
+const fieldErrors = ref({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+});
 
 watch(() => props.initialSubject, (newValue) => {
     subject.value = newValue;
@@ -69,7 +100,7 @@ const nameRules = [
 
 const emailRules = [
     (v) => !!v || 'O e-mail é obrigatório',
-    (v) => /.+@.+\..+/.test(v) || 'O e-mail deve ser válido',
+    (v) => /.+@.+\..+/.test(v) || 'Por favor, insira um e-mail válido',
 ];
 
 const subjectRules = [
@@ -82,7 +113,59 @@ const messageRules = [
     (v) => (v && v.length >= 10) || 'A mensagem deve ter pelo menos 10 caracteres',
 ];
 
+const clearError = (field) => {
+    fieldErrors.value[field] = '';
+};
+
+const validateForm = () => {
+    let isValid = true;
+
+    if (!name.value) {
+        fieldErrors.value.name = 'Por favor, insira seu nome';
+        isValid = false;
+    } else if (name.value.length < 3) {
+        fieldErrors.value.name = 'O nome deve ter pelo menos 3 caracteres';
+        isValid = false;
+    }
+
+    if (!email.value) {
+        fieldErrors.value.email = 'Por favor, insira seu e-mail';
+        isValid = false;
+    } else if (!/.+@.+\..+/.test(email.value)) {
+        fieldErrors.value.email = 'Por favor, insira um e-mail válido';
+        isValid = false;
+    }
+
+    if (!subject.value) {
+        fieldErrors.value.subject = 'Por favor, insira o assunto';
+        isValid = false;
+    } else if (subject.value.length < 5) {
+        fieldErrors.value.subject = 'O assunto deve ter pelo menos 5 caracteres';
+        isValid = false;
+    }
+
+    if (!message.value) {
+        fieldErrors.value.message = 'Por favor, insira sua mensagem';
+        isValid = false;
+    } else if (message.value.length < 10) {
+        fieldErrors.value.message = 'A mensagem deve ter pelo menos 10 caracteres';
+        isValid = false;
+    }
+
+    if (!isValid) {
+        errorMessage.value = 'Por favor, preencha todos os campos corretamente';
+        showErrorSnackbar.value = true;
+    }
+
+    return isValid;
+};
+
 const submitForm = async () => {
+    // Validar o formulário antes de enviar
+    if (!validateForm()) {
+        return;
+    }
+
     isSubmitting.value = true;
 
     try {
@@ -104,17 +187,23 @@ const submitForm = async () => {
         });
 
         if (response.ok) {
-            alert('Mensagem enviada com sucesso!');
+            showSuccessSnackbar.value = true;
             name.value = '';
             email.value = '';
             subject.value = '';
             message.value = '';
+            // Resetar erros
+            Object.keys(fieldErrors.value).forEach(key => {
+                fieldErrors.value[key] = '';
+            });
         } else {
             const errorData = await response.json();
-            alert(`Erro ao enviar a mensagem: ${errorData.error || 'Tente novamente.'}`);
+            errorMessage.value = errorData.error || 'Erro ao enviar a mensagem. Tente novamente.';
+            showErrorSnackbar.value = true;
         }
     } catch (error) {
-        alert('Erro ao enviar a mensagem. Tente novamente.');
+        errorMessage.value = 'Erro de conexão. Verifique sua internet e tente novamente.';
+        showErrorSnackbar.value = true;
     } finally {
         isSubmitting.value = false;
     }
@@ -122,9 +211,10 @@ const submitForm = async () => {
 </script>
 
 <style scoped>
+/* Estilos mantidos da versão anterior */
 .contact-form {
     max-width: 600px;
-        margin: 0 auto;
+    margin: 0 auto;
     }
     
     .form-card {
