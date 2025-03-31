@@ -4,8 +4,8 @@
       <v-toolbar-title>My Space Portfolio</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text to="/">Home</v-btn>
-      <v-btn text to="/projetos">Projects</v-btn>
       <v-btn text to="/contato">Contact</v-btn>
+      <v-btn text to="/sobre">Sobre</v-btn>
       <v-btn icon @click="toggleTheme">
         <v-icon>{{ themeIcon }}</v-icon>
       </v-btn>
@@ -30,9 +30,6 @@
         </v-list-item>
         <v-list-item to="/sobre">
           <v-list-item-title>Sobre</v-list-item-title>
-        </v-list-item>
-        <v-list-item to="/servicos">
-          <v-list-item-title>Serviços</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
