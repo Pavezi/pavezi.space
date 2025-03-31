@@ -24,7 +24,7 @@ export default defineNuxtConfig({
       ]
     },
   },
-  modules: [],
+  modules: ['@nuxthub/core'],
   runtimeConfig: {
     public: {
       formspreeEndpoint: process.env.NUXT_PUBLIC_FORMSPREE_ENDPOINT,
