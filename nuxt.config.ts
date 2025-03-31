@@ -16,15 +16,36 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      title: "Pavezi",
+      titleTemplate: "%s - Vinícius Pavezi",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "description",
+          content:
+            "Portfólio de Vinícius Pavezi - Desenvolvedor Fullstack JavaScript",
+        },
+      ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'icon', type: 'image/png', sizes: '256x256', href: '/alien-svgrepo-com 256.png' },
-        { rel: 'icon', type: 'image/png', sizes: '512x512', href: '/alien-svgrepo-com 512.png' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/alien-svgrepo-com 256.png' }
-      ]
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "256x256",
+          href: "/icon256.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "512x512",
+          href: "/icon512.png",
+        },
+        { rel: "apple-touch-icon", sizes: "180x180", href: "/icon256.png" },
+      ],
     },
   },
-  modules: ['@nuxthub/core'],
+  modules: ["@nuxthub/core"],
   runtimeConfig: {
     public: {
       formspreeEndpoint: process.env.NUXT_PUBLIC_FORMSPREE_ENDPOINT,

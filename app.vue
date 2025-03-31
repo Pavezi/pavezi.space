@@ -1,10 +1,13 @@
 <template>
   <v-app :style="backgroundStyle">
     <v-app-bar app color="primary" dark v-if="!isMobile">
-      <v-toolbar-title>My Space Portfolio</v-toolbar-title>
+      <v-btn to="/" variant="text" class="logo-btn px-0 mx-1" height="auto">
+        <v-img src="/icon256.png" alt="Logo - Voltar para Home" :width="40" :height="40" contain />
+      </v-btn>
       <v-spacer></v-spacer>
+
       <v-btn text to="/">Home</v-btn>
-      <v-btn text to="/contato">Contact</v-btn>
+      <v-btn text to="/contato">Contato</v-btn>
       <v-btn text to="/sobre">Sobre</v-btn>
       <v-btn icon @click="toggleTheme">
         <v-icon>{{ themeIcon }}</v-icon>
@@ -13,8 +16,9 @@
 
     <v-app-bar app color="primary" dark v-else>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>My Space Portfolio</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <div>
+        <v-img src="/icon256.png" alt="Profile"></v-img>
+      </div> <v-spacer></v-spacer>
       <v-btn icon @click="toggleTheme">
         <v-icon>{{ themeIcon }}</v-icon>
       </v-btn>
@@ -39,7 +43,7 @@
     </v-main>
 
     <v-footer app color="primary" dark>
-      <span>&copy; 2023 My Space Portfolio</span>
+      <span>&copy; 2023 My Portfolio</span>
     </v-footer>
   </v-app>
 </template>

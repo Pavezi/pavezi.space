@@ -3,7 +3,7 @@
         <v-app-bar app>
             <v-app-bar-nav-icon @click="drawer = !drawer" />
             <v-btn icon to="/" class="mr-2">
-                <v-img src="/alien-svgrepo-com 256.png" alt="Home" max-height="40" max-width="40" contain />
+                <v-img src="/icon256.png" alt="Home" max-height="40" max-width="40" contain />
             </v-btn>
             <v-toolbar-title>Meu Portfólio</v-toolbar-title>
             <v-spacer />
