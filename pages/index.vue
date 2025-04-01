@@ -33,6 +33,10 @@ const services = [
         description: 'Criação de sites modernos e responsivos com Vue.js e Nuxt.',
     },
     {
+        title: 'Pagamentos',
+        description: 'Pagamentos via boletos, qr code, pix e cartão de crédito.',
+    },
+    {
         title: 'Consultoria',
         description: 'Elaboração de produtos e boas práticas de desenvolvimento.',
     },
@@ -41,16 +45,12 @@ const services = [
         description: 'Desenvolvimento e integração de APIs RESTful com Node.js e Nest.js.',
     },
     {
-        title: 'API do WhatsApp',
-        description: 'Integra o WhastApp no seu sistema envio automatico de mensagens e automações',
-    },
-    {
-        title: 'Pagamentos',
-        description: 'Pagamentos via boletos, qr code, pix e cartão de crédito',
-    },
-    {
         title: 'Automações',
-        description: 'Automatizar processos, criar gatilhos e definir scripts',
+        description: 'Automatizar processos, criar gatilhos e definir scripts.',
+    },
+    {
+        title: 'API do WhatsApp',
+        description: 'Integra o WhastApp no seu sistema envio automatico de mensagens e automações.',
     },
 ];
 
