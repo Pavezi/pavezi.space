@@ -161,7 +161,7 @@ const validateForm = () => {
 };
 
 const submitForm = async () => {
-    // Validar o formulário antes de enviar
+
     if (!validateForm()) {
         return;
     }
@@ -223,8 +223,7 @@ const submitForm = async () => {
         background-color: rgba(var(--v-theme-surface), 0.95);
     }
     
-    .contact-links {
-        background-color: rgba(var(--v-theme-surface), 0.8);
+        .contact-links {
         padding: 20px;
         border-radius: 12px;
         backdrop-filter: blur(4px);
