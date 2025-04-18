@@ -4,6 +4,11 @@
             <v-col cols="12" md="8" offset-md="2" class="text-center">
                 <h1 class="text-h2 font-weight-bold">Bem-vindo ao Meu Portfólio</h1>
                 <p class="text-h6 mt-4">Desenvolvedor Full-Stack | Engenheiro de Software | Vinícius Pavezi</p>
+                <v-col>
+                    <v-avatar size="200" class="profile-avatar">
+                        <v-img src="/me.jpeg" alt="Profile"></v-img>
+                    </v-avatar>
+                </v-col>
             </v-col>
         </v-row>
         <v-row class="my-10">
