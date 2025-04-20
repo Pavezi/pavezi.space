@@ -34,16 +34,16 @@
 
 const services = [
     {
-        title: 'Desenvolvimento Web',
-        description: 'Criação de sites modernos e responsivos com Vue.js e Nuxt.',
+        title: 'Criação de sites',
+        description: 'Desenvolvimento web moderno e responsivos com Vue.js e Nuxt.',
     },
     {
         title: 'Pagamentos',
-        description: 'Pagamentos via boletos, qr code, pix e cartão de crédito.',
+        description: 'Adicione pagamentos via boletos, qr code, pix e cartão de crédito no seu sitema.',
     },
     {
         title: 'Consultoria',
-        description: 'Elaboração de produtos e boas práticas de desenvolvimento.',
+        description: 'Elaboração de identidade virtual e site empresarial.',
     },
     {
         title: 'Integração de APIs',
@@ -51,24 +51,34 @@ const services = [
     },
     {
         title: 'Automações',
-        description: 'Automatizar processos, criar gatilhos e definir scripts.',
+        description: 'Automatizar processos e rotinas da empresa, criar gatilhos e definir scripts.',
     },
     {
         title: 'API do WhatsApp',
-        description: 'Integra o WhastApp no seu sistema envio automatico de mensagens e automações.',
+        description: 'Integra o WhastApp no seu sistema, permitindo envio automático de mensagens e automações.',
     },
 ];
 
-const projects = [
+const featuredProjects = [
     {
-        title: 'Portfólio Pessoal',
-        description: 'Um site para mostrar meus projetos e habilidades.',
-        image: '/images/project1.jpg',
+        title: 'Smart Planner Chat',
+        description: 'Assistente de IA para planejamento pessoal e profissional com integração de calendário.',
+        image: 'smart-planner.png',
+        link: 'https://smart-planner-n4q8.onrender.com/',
+        tags: ['Flask', 'IA', 'Nvidia.R1']
     },
     {
-        title: 'E-commerce',
-        description: 'Plataforma de vendas online com integração de pagamentos.',
-        image: '/images/project2.jpg',
-    },
+        title: 'Meu GitHub',
+        description: 'Repositórios com projetos open-source e contribuições para a comunidade.',
+        image: 'github.png',
+        link: 'https://github.com/Pavezi',
+        tags: ['Código', 'Open Source']
+    }
 ];
 </script>
+<style scoped>
+.profile-avatar {
+    border: 4px solid rgba(var(--v-theme-), 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+</style>

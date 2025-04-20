@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <v-container>
         <ContactForm :initialSubject="subject" />
-    </div>
+    </v-container>
 </template>
 
 <script setup>
