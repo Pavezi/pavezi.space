@@ -9,6 +9,12 @@
 
         <v-card-text class="project-description">
             {{ description }}
+
+            <v-chip-group class="mt-3">
+                <v-chip v-for="(tag, index) in tags" :key="index" small>
+                    {{ tag }}
+                </v-chip>
+            </v-chip-group>
         </v-card-text>
 
         <v-divider></v-divider>
@@ -42,28 +48,28 @@ defineProps({
 <style scoped>
 .project-card {
     width: 100%;
-        max-width: 360px;
+    max-width: 360px;
         margin: 12px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         border-radius: 16px;
         overflow: hidden;
+    }
     
-        &:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3) !important;
-        }
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3) !important;
     }
     
     .project-image {
         position: relative;
+    }
     
-        .v-card-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 16px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-        }
+    .project-image .v-card-title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 16px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
     
     .project-description {
@@ -72,11 +78,12 @@ defineProps({
         line-height: 1.6;
         min-height: 120px;
     }
+
 .v-card-actions {
     justify-content: center;
+}
 
-    .v-btn {
-        font-weight: 600;
-    }
+.v-card-actions .v-btn {
+    font-weight: 600;
 }
 </style>
