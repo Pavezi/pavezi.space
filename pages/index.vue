@@ -34,35 +34,35 @@
 
 const services = [
     {
-        title: 'Criação de sites',
-        description: 'Desenvolvimento web moderno e responsivos com Vue.js e Nuxt.',
+        title: 'Sites High-Performance',
+        description: 'Desenvolvimento de sites rápidos e SEO-friendly com Vue.js/Nuxt ou React/Next.js, garantindo 90+ no PageSpeed Insights.',
     },
     {
-        title: 'Pagamentos',
-        description: 'Adicione pagamentos via boletos, qr code, pix e cartão de crédito no seu sitema.',
+        title: 'Sistema de Pagamentos Seguro',
+        description: 'Integração com Pagar.me para receber Pix, cartão e boletos com anti-fraude e relatórios automatizados, reduzindo inadimplência em até 25%.',
     },
     {
-        title: 'Consultoria',
-        description: 'Elaboração de identidade virtual e site empresarial.',
+        title: 'Consultoria em Arquitetura de Software',
+        description: 'Análise e otimização do seu backend: escalabilidade (Node.js/Nest.js), redução de custos AWS/GCP e migração para microsserviços.',
     },
     {
-        title: 'Integração de APIs',
-        description: 'Desenvolvimento e integração de APIs RESTful com Node.js e Nest.js.',
+        title: 'Integração de APIs que Simplificam Negócios',
+        description: 'Conecto sistemas como WhatsApp, Pagar.me e ERPs via APIs RESTful customizadas, eliminando trabalho manual (ex: envio de notas fiscais automático).',
     },
     {
-        title: 'Automações',
-        description: 'Automatizar processos e rotinas da empresa, criar gatilhos e definir scripts.',
+        title: 'Automações que Poupan Tempo e Dinheiro',
+        description: 'Crio robôs para processos repetitivos: atualização de banco de dados, disparo de e-mails/SMS e alertas via WhatsApp, economizando 10+ horas semanais.',
     },
     {
-        title: 'API do WhatsApp',
-        description: 'Integra o WhastApp no seu sistema, permitindo envio automático de mensagens e automações.',
+        title: 'Chatbot de WhatsApp que Aumenta Vendas',
+        description: 'Implemento fluxos automatizados de atendimento, lembretes de pagamento e promoções personalizadas, melhorando a taxa de conversão em 30%.',
     },
 ];
 
 const featuredProjects = [
     {
         title: 'Smart Planner Chat',
-        description: 'Assistente de IA para planejamento pessoal e profissional com integração de calendário.',
+        description: 'Chat que planeja tarefas diárias usando IA generativa',
         image: 'smart-planner.png',
         link: 'https://smart-planner-n4q8.onrender.com/',
         tags: ['Flask', 'IA', 'Nvidia.R1']
